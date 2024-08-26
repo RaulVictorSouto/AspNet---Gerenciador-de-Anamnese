@@ -1,0 +1,120 @@
+﻿@model Anamnese.Models.PacienteModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>PacienteModel</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NomePaciente)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NomePaciente)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SobrenomePaciente)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SobrenomePaciente)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DataNascimentoPaciente)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DataNascimentoPaciente)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.GeneroPaciente)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.GeneroPaciente)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CpfPaciente)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CpfPaciente)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.RgPaciente)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.RgPaciente)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CertidaoPaciente)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CertidaoPaciente)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TelefonePaciente)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TelefonePaciente)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CelularPaciente)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CelularPaciente)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.EstadoCivilPaciente)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.EstadoCivilPaciente)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CepPaciente)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CepPaciente)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.LogradouroPaciente)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LogradouroPaciente)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NumeroEnderecoPaciente)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NumeroEnderecoPaciente)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.BairroPaciente)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.BairroPaciente)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CidadePaciente)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CidadePaciente)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.EstadoPaciente)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.EstadoPaciente)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DataCadastroPaciente)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DataCadastroPaciente)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.IdPaciente">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -45,12 +45,8 @@ namespace Anamnese.Controllers
 
         // GET: PacienteModels/Create
         public IActionResult Create()
-        {
-            var model = new PacienteModel
-            {
-                DataCadastroPaciente = DateTime.Now
-            };
-            return View(model);
+        { 
+            return View();
         }
 
         // POST: PacienteModels/Create
@@ -58,7 +54,7 @@ namespace Anamnese.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdPaciente,NomePaciente,SobrenomePaciente,DataNascimentoPaciente,GeneroPaciente,CpfPaciente,RgPaciente,CertidaoPaciente,TelefonePaciente,CelularPaciente,EstadoCivilPaciente,CepPaciente,LogradouroPaciente,NumeroEnderecoPaciente,BairroPaciente,CidadePaciente,EstadoPaciente,DataCadastroPaciente")] PacienteModel pacienteModel)
+        public async Task<IActionResult> Create([Bind("IdPaciente,NomePaciente,SobrenomePaciente,DataNascimentoPaciente,GeneroPaciente,CpfPaciente,RgPaciente,CertidaoPaciente,TelefonePaciente,CelularPaciente,NaturalidadePaciente,EstadoCivilPaciente,CepPaciente,LogradouroPaciente,NumeroEnderecoPaciente,BairroPaciente,CidadePaciente,EstadoPaciente,DataCadastroPaciente")] PacienteModel pacienteModel)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +86,7 @@ namespace Anamnese.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdPaciente,NomePaciente,SobrenomePaciente,DataNascimentoPaciente,GeneroPaciente,CpfPaciente,RgPaciente,CertidaoPaciente,TelefonePaciente,CelularPaciente,EstadoCivilPaciente,CepPaciente,LogradouroPaciente,NumeroEnderecoPaciente,BairroPaciente,CidadePaciente,EstadoPaciente,DataCadastroPaciente")] PacienteModel pacienteModel)
+        public async Task<IActionResult> Edit(int id, [Bind("IdPaciente,NomePaciente,SobrenomePaciente,DataNascimentoPaciente,GeneroPaciente,CpfPaciente,RgPaciente,CertidaoPaciente,TelefonePaciente,CelularPaciente,NaturalidadePaciente,EstadoCivilPaciente,CepPaciente,LogradouroPaciente,NumeroEnderecoPaciente,BairroPaciente,CidadePaciente,EstadoPaciente,DataCadastroPaciente")] PacienteModel pacienteModel)
         {
             if (id != pacienteModel.IdPaciente)
             {

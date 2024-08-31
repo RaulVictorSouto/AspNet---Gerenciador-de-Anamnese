@@ -50,7 +50,11 @@ namespace Anamnese.Models
         [Display(Name = "Celular")]
         [StringLength(15, ErrorMessage = "O celular deve ter no máximo 15 caracteres.")]
         [DataType(DataType.PhoneNumber)]
-        public string? CelularPaciente { get; set; } 
+        public string? CelularPaciente { get; set; }
+
+        [Display(Name = "Naturalidade")]
+        [Required(ErrorMessage = "A naturalidade do paciente é obrigatória.")]
+        public string NaturalidadePaciente { get; set; } = "Desconhecido";
 
         [Display(Name = "Estado Civil")]
         [StringLength(20, ErrorMessage = "O estado civil deve ter no máximo 20 caracteres.")]
@@ -83,6 +87,6 @@ namespace Anamnese.Models
         [Display(Name = "Data de Cadastro")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public DateTime DataCadastroPaciente { get; set; } 
+        public DateTime? DataCadastroPaciente { get; set; } 
     }
 }

@@ -46,7 +46,11 @@ namespace Anamnese.Controllers
         // GET: PacienteModels/Create
         public IActionResult Create()
         {
-            return View();
+            var model = new PacienteModel
+            {
+                DataCadastroPaciente = DateTime.Now
+            };
+            return View(model);
         }
 
         // POST: PacienteModels/Create

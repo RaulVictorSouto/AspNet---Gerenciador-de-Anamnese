@@ -22,6 +22,7 @@ namespace Anamnese.Controllers
         // GET: AnamneseModels
         public async Task<IActionResult> Index(int idPaciente)
         {
+            ViewBag.IdPaciente = idPaciente;
             var anamneses = await _context.AnamneseModel.Where(a => a.IdPaciente == idPaciente).ToListAsync();
             return View(anamneses);
         }
@@ -55,13 +56,23 @@ namespace Anamnese.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdAnamnese,IdPaciente,QueixaPrincipalAnamnese,HistoricoDoencaAtualAnamnese,AntecendentesPessoaisAnamnese,AntecendentesFamiliaresAnamnese,ExameFisicoAnamnese,HipoteseDiagnosticaAnamnese,PlanoTratamentoAnamnese,DataCadastroAnamnese")] AnamneseModel anamneseModel)
+        public async Task<IActionResult> Create([Bind("IdAnamnese,IdPaciente,QueixaPrincipalAnamnese,HistoricoDoencaAtualAnamnese,AntecedentesPessoaisAnamnese,AntecedentesFamiliaresAnamnese,ExameFisicoAnamnese,HipotesesDiagnosticasAnamnese,PlanoTratamentoAnamnese,DataCadastroAnamnese")] AnamneseModel anamneseModel)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(anamneseModel);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                try
+                {
+                    anamneseModel.DataCadastroAnamnese = DateTime.Now;
+
+                    _context.Add(anamneseModel);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", "Ocorreu um erro ao salvar os dados: " + ex.Message);
+                }
+                
             }
             return View(anamneseModel);
         }

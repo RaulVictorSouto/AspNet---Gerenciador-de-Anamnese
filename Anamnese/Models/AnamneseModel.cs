@@ -49,7 +49,7 @@ namespace Anamnese.Models
         public DateTime DataCadastroAnamnese { get; set; }
 
         // Propriedade de Navegação para o Paciente
-        public virtual PacienteModel Paciente { get; set; }
+        public virtual PacienteModel? Paciente { get; set; }
 
     }
 }

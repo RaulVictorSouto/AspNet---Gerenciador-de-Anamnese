@@ -2,13 +2,17 @@
 
 @{
     ViewData["Title"] = "Index";
+    var idPaciente = ViewBag.IdPaciente;
 }
 
-<h1>Index</h1>
+<h1>Lista de Anamneses</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" asp-route-idPaciente="@ViewBag.IdPaciente">Adicionar nova anamnese</a>
 </p>
+
+<p>IdPaciente: @ViewBag.IdPaciente</p>
+
 <table class="table">
     <thead>
         <tr>

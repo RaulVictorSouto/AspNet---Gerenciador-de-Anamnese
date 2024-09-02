@@ -58,6 +58,8 @@ namespace Anamnese.Controllers
         {
             if (ModelState.IsValid)
             {
+                pacienteModel.DataCadastroPaciente = DateTime.Now;
+
                 _context.Add(pacienteModel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

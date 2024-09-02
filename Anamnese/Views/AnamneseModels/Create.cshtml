@@ -2,16 +2,24 @@
 
 @{
     ViewData["Title"] = "Create";
+    var idPaciente = Context.Request.Query["IdPaciente"].ToString();
 }
 
 <h1>Create</h1>
 
 <h4>AnamneseModel</h4>
+<p>idPaciente: @idPaciente</p>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input asp-for="IdPaciente" value="@idPaciente" type="hidden"/>
+            <div class="form-group">
+                <label asp-for="QueixaPrincipalAnamnese" class="control-label"></label>
+                <input asp-for="QueixaPrincipalAnamnese" class="form-control" />
+                <span asp-validation-for="QueixaPrincipalAnamnese" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="QueixaPrincipalAnamnese" class="control-label"></label>
                 <input asp-for="QueixaPrincipalAnamnese" class="form-control" />
@@ -48,7 +56,7 @@
                 <span asp-validation-for="PlanoTratamentoAnamnese" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Cadastrar" class="btn btn-primary" />
             </div>
         </form>
     </div>

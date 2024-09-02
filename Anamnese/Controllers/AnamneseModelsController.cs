@@ -98,7 +98,7 @@ namespace Anamnese.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdAnamnese,IdPaciente,QueixaPrincipalAnamnese,HistoricoDoencaAtualAnamnese,AntecendentesPessoaisAnamnese,AntecendentesFamiliaresAnamnese,ExameFisicoAnamnese,HipoteseDiagnosticaAnamnese,PlanoTratamentoAnamnese,DataCadastroAnamnese")] AnamneseModel anamneseModel)
+        public async Task<IActionResult> Edit(int id, [Bind("IdAnamnese,IdPaciente,QueixaPrincipalAnamnese,HistoricoDoencaAtualAnamnese,AntecedentesPessoaisAnamnese,AntecedentesFamiliaresAnamnese,ExameFisicoAnamnese,HipotesesDiagnosticasAnamnese,PlanoTratamentoAnamnese,DataCadastroAnamnese")] AnamneseModel anamneseModel)
         {
             if (id != anamneseModel.IdAnamnese)
             {

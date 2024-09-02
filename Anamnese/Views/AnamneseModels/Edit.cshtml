@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Edit";
+    var idPaciente = Context.Request.Query["IdPaciente"].ToString();
 }
 
 <h1>Edit</h1>
@@ -12,7 +13,9 @@
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="IdAnamnese" />
+            <input type="hidden" asp-for="IdAnamnese" readonly />
+            <input type="hidden" asp-for="IdPaciente" value="@idPaciente" readonly />
+            <input asp-for="DataCadastroAnamnese" class="form-control" type="hidden" readonly />
             <div class="form-group">
                 <label asp-for="QueixaPrincipalAnamnese" class="control-label"></label>
                 <input asp-for="QueixaPrincipalAnamnese" class="form-control" />

@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Details";
+    var idPaciente = Context.Request.Query["IdPaciente"].ToString();
 }
 
 <h1>Details</h1>
@@ -64,6 +65,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.IdAnamnese">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+    <a asp-action="Edit" asp-route-id="@Model?.IdAnamnese" asp-route-IdPaciente="@idPaciente">Editar</a> |
+    <a asp-action="Index" asp-controller="AnamneseModels" asp-route-idPaciente="@idPaciente">Voltar para a lista de Anamneses</a>
+</div>v

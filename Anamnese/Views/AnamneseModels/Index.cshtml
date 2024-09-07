@@ -29,11 +29,14 @@
                 @Html.DisplayFor(modelItem => item.DataCadastroAnamnese)
             </td>
             <td>
-                <a asp-action="Details" asp-route-id="@item.IdAnamnese">Detalhes</a> |
+                <a asp-action="Details" asp-route-id="@item.IdAnamnese" asp-route-IdPaciente="@ViewBag.IdPaciente">Detalhes</a> |
                 <a asp-action="Edit" asp-route-id="@item.IdAnamnese" asp-route-IdPaciente="@ViewBag.IdPaciente">Editar</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdAnamnese">Deletar</a>
+                <a asp-action="Delete" asp-route-id="@item.IdAnamnese" asp-route-IdPaciente="@ViewBag.IdPaciente">Deletar</a>
             </td>
         </tr>
 }
+        <p>
+            <a asp-action="Index" asp-controller="PacienteModels">Voltar à lista de Pacientes</a>
+        </p>
     </tbody>
 </table>

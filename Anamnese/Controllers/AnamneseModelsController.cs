@@ -66,7 +66,7 @@ namespace Anamnese.Controllers
 
                     _context.Add(anamneseModel);
                     await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Index));
+                    return RedirectToAction("Index", new {idPaciente = anamneseModel.IdPaciente});
                 }
                 catch (Exception ex)
                 {
@@ -123,7 +123,7 @@ namespace Anamnese.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", new { idPaciente = anamneseModel.IdPaciente });
             }
             return View(anamneseModel);
         }
@@ -158,7 +158,7 @@ namespace Anamnese.Controllers
             }
 
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", new {idPaciente = anamneseModel.IdPaciente});
         }
 
         private bool AnamneseModelExists(int id)

@@ -5,10 +5,9 @@
     var idPaciente = Context.Request.Query["IdPaciente"].ToString();
 }
 
-<h1>Details</h1>
+<h1>Detalhes da Anamnese</h1>
 
 <div>
-    <h4>AnamneseModel</h4>
     <hr />
     <dl class="row">
         <dd class = "col-sm-10">
@@ -67,4 +66,4 @@
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.IdAnamnese" asp-route-IdPaciente="@idPaciente">Editar</a> |
     <a asp-action="Index" asp-controller="AnamneseModels" asp-route-idPaciente="@idPaciente">Voltar para a lista de Anamneses</a>
-</div>v
+</div>

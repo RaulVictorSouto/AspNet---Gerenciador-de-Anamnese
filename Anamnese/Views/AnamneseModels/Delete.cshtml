@@ -5,9 +5,7 @@
     var idPaciente = Context.Request.Query["IdPaciente"].ToString();
 }
 
-<h1>Delete</h1>
-
-<h3>Are you sure you want to delete this?</h3>
+<h3>Você está certo de que deseja deletar esta Anamnese?</h3>
 <div>
     <h4>AnamneseModel</h4>
     <hr />
@@ -70,7 +68,7 @@
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="IdAnamnese" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <input type="submit" value="Deletar" class="btn btn-danger" /> |
         <a asp-action="Index" asp-controller="AnamneseModels" asp-route-idPaciente="@idPaciente">Voltar para a lista de Anamneses</a>
     </form>
 </div>

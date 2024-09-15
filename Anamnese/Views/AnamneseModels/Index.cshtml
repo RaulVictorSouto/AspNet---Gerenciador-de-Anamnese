@@ -11,6 +11,14 @@
     <a asp-action="Create" asp-route-idPaciente="@ViewBag.IdPaciente">Adicionar nova anamnese</a>
 </p>
 
+<script>
+    function openPdf(url) {
+        // Abre o PDF em uma nova aba
+        window.open(url, '_blank');
+    }
+</script>
+
+
 <p>IdPaciente: @ViewBag.IdPaciente</p>
 
 <table class="table">
@@ -30,6 +38,7 @@
             </td>
             <td>
                 <a asp-action="Details" asp-route-id="@item.IdAnamnese" asp-route-IdPaciente="@ViewBag.IdPaciente">Detalhes</a> |
+                <a href="javascript:openPdf('@Url.Action("GerarPdf", new { id = item.IdAnamnese })');">Gerar PDF</a> |
                 <a asp-action="Edit" asp-route-id="@item.IdAnamnese" asp-route-IdPaciente="@ViewBag.IdPaciente">Editar</a> |
                 <a asp-action="Delete" asp-route-id="@item.IdAnamnese" asp-route-IdPaciente="@ViewBag.IdPaciente">Deletar</a>
             </td>

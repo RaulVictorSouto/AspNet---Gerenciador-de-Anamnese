@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Anamnese.Data;
 using Anamnese.Models;
+using NuGet.Packaging;
+using System.ComponentModel;
+using QuestPDF.Fluent;
+using QuestPDF.Helpers;
+using QuestPDF.Infrastructure;
 
 namespace Anamnese.Controllers
 {
@@ -165,5 +165,67 @@ namespace Anamnese.Controllers
         {
             return _context.AnamneseModel.Any(e => e.IdAnamnese == id);
         }
+
+        public async Task<IActionResult> GerarPdf(int id)
+        {
+            // Gera o PDF
+            var pdfResult = await AnamneseCreatePdf(id);
+
+            if (pdfResult == null)
+            {
+                return NotFound();
+            }
+
+            return pdfResult;
+        }
+
+        private async Task<IActionResult> AnamneseCreatePdf(int id)
+        {
+            var anamnese = await _context.AnamneseModel
+                .FirstOrDefaultAsync(a => a.IdAnamnese == id);
+
+            if (anamnese == null)
+            {
+                return NotFound();
+            }
+
+            QuestPDF.Settings.License = QuestPDF.Infrastructure.LicenseType.Community;
+
+            using (var stream = new MemoryStream())
+            {
+                var document = Document.Create(container =>
+                {
+                    container
+                        .Page(page =>
+                        {
+                            page.Margin(50);
+                            page.Content().Column(column =>
+                            {
+                                column.Item().Text($"Anamnese ID: {anamnese.IdAnamnese}");
+                                column.Item().Text($"Paciente ID: {anamnese.IdPaciente}");
+                                column.Item().Text($"Queixa Principal: {anamnese.QueixaPrincipalAnamnese}");
+                                column.Item().Text($"Histórico da Doença Atual: {anamnese.HistoricoDoencaAtualAnamnese}");
+                                column.Item().Text($"Antecedentes Pessoais: {anamnese.AntecedentesPessoaisAnamnese}");
+                                column.Item().Text($"Antecedentes Familiares: {anamnese.AntecedentesFamiliaresAnamnese}");
+                                column.Item().Text($"Exame Físico: {anamnese.ExameFisicoAnamnese}");
+                                column.Item().Text($"Hipóteses Diagnósticas: {anamnese.HipotesesDiagnosticasAnamnese}");
+                                column.Item().Text($"Plano de Tratamento: {anamnese.PlanoTratamentoAnamnese}");
+                                column.Item().Text($"Data de Cadastro: {anamnese.DataCadastroAnamnese}");
+                            });
+                        });
+                });
+
+                // Gere o PDF para um stream em memória
+                document.GeneratePdf(stream);
+                var pdfBytes = stream.ToArray();
+
+                return File(pdfBytes, "application/pdf", $"Anamnese_{id}.pdf");
+            }
+        }
+
+
+
+
+
     }
 }

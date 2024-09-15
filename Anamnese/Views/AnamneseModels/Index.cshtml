@@ -6,6 +6,7 @@
 }
 
 <h1>Lista de Anamneses</h1>
+<h3>Paciente: @ViewBag.NomePaciente</h3>
 
 <p>
     <a asp-action="Create" asp-route-idPaciente="@ViewBag.IdPaciente">Adicionar nova anamnese</a>
@@ -13,13 +14,9 @@
 
 <script>
     function openPdf(url) {
-        // Abre o PDF em uma nova aba
         window.open(url, '_blank');
     }
 </script>
-
-
-<p>IdPaciente: @ViewBag.IdPaciente</p>
 
 <table class="table">
     <thead>

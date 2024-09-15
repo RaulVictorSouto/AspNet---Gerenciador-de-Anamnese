@@ -5,6 +5,12 @@
     var idPaciente = Context.Request.Query["IdPaciente"].ToString();
 }
 
+<script>
+    function openPdf(url) {
+        window.open(url, '_blank');
+    }
+</script>
+
 <h1>Detalhes da Anamnese</h1>
 
 <div>
@@ -65,5 +71,6 @@
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.IdAnamnese" asp-route-IdPaciente="@idPaciente">Editar</a> |
+    <a href="javascript:openPdf('@Url.Action("GerarPdf", new { id = Model.IdAnamnese })');">Gerar PDF</a> |
     <a asp-action="Index" asp-controller="AnamneseModels" asp-route-idPaciente="@idPaciente">Voltar para a lista de Anamneses</a>
 </div>

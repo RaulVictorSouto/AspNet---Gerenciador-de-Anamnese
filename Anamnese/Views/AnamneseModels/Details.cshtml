@@ -16,55 +16,59 @@
 <div>
     <hr />
     <dl class="row">
-        <dd class = "col-sm-10">
+        <dt class="col-sm-2 text-left">
+            <!-- Alinhar os títulos à esquerda -->
+            @Html.DisplayNameFor(model => model.IdPaciente)
+        </dt>
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.IdPaciente)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2 text-left">
             @Html.DisplayNameFor(model => model.QueixaPrincipalAnamnese)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.QueixaPrincipalAnamnese)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2 text-left">
             @Html.DisplayNameFor(model => model.HistoricoDoencaAtualAnamnese)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.HistoricoDoencaAtualAnamnese)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2 text-left">
             @Html.DisplayNameFor(model => model.AntecedentesPessoaisAnamnese)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.AntecedentesPessoaisAnamnese)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2 text-left">
             @Html.DisplayNameFor(model => model.AntecedentesFamiliaresAnamnese)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.AntecedentesFamiliaresAnamnese)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2 text-left">
             @Html.DisplayNameFor(model => model.ExameFisicoAnamnese)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.ExameFisicoAnamnese)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2 text-left">
             @Html.DisplayNameFor(model => model.HipotesesDiagnosticasAnamnese)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.HipotesesDiagnosticasAnamnese)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2 text-left">
             @Html.DisplayNameFor(model => model.PlanoTratamentoAnamnese)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.PlanoTratamentoAnamnese)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2 text-left">
             @Html.DisplayNameFor(model => model.DataCadastroAnamnese)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.DataCadastroAnamnese)
         </dd>
     </dl>
@@ -72,5 +76,5 @@
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.IdAnamnese" asp-route-IdPaciente="@idPaciente">Editar</a> |
     <a href="javascript:openPdf('@Url.Action("GerarPdf", new { id = Model.IdAnamnese })');">Gerar PDF</a> |
-    <a asp-action="Index" asp-controller="AnamneseModels" asp-route-idPaciente="@idPaciente">Voltar para a lista de Anamneses</a>
+    <a asp-action="Index" asp-controller="AnamneseModels" asp-route-idPaciente="@idPaciente">Voltar</a>
 </div>

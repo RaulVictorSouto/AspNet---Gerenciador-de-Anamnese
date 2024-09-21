@@ -23,6 +23,10 @@ namespace Anamnese.Controllers
         public async Task<IActionResult> Index(int idPaciente)
         {
             ViewBag.IdPaciente = idPaciente;
+
+            var paciente = await _context.PacienteModel.Where(p => p.IdPaciente == idPaciente).FirstOrDefaultAsync();
+            ViewBag.Nome = paciente.NomePaciente + " " + paciente.SobrenomePaciente;
+
             var anamneses = await _context.AnamneseModel.Where(a => a.IdPaciente == idPaciente).ToListAsync();
             return View(anamneses);
         }

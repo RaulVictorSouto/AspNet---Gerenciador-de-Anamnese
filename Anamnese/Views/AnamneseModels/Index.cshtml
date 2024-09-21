@@ -3,10 +3,11 @@
 @{
     ViewData["Title"] = "Index";
     var idPaciente = ViewBag.IdPaciente;
+    var nome = ViewBag.Nome;
 }
 
 <h1>Lista de Anamneses</h1>
-<h3>Paciente: @ViewBag.NomePaciente</h3>
+<h3>Paciente: @nome</h3>
 
 <p>
     <a asp-action="Create" asp-route-idPaciente="@ViewBag.IdPaciente">Adicionar nova anamnese</a>
@@ -24,7 +25,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.DataCadastroAnamnese)
             </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -41,8 +41,9 @@
             </td>
         </tr>
 }
-        <p>
-            <a asp-action="Index" asp-controller="PacienteModels">Voltar à lista de Pacientes</a>
-        </p>
     </tbody>
 </table>
+
+<p>
+    <a asp-action="Index" asp-controller="PacienteModels" class="btn btn-primary sticky-top">Voltar</a>
+</p>

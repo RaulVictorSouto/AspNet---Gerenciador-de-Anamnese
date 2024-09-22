@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Anamnese.Data;
 using Anamnese.Models;
+using System.Globalization;
 
 namespace Anamnese.Controllers
 {
@@ -17,6 +18,7 @@ namespace Anamnese.Controllers
         public PacienteModelsController(Contexto context)
         {
             _context = context;
+            
         }
 
         // GET: PacienteModels

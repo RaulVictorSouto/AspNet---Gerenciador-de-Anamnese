@@ -7,6 +7,7 @@ using System.ComponentModel;
 using QuestPDF.Fluent;
 using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
+using System.Globalization;
 
 namespace Anamnese.Controllers
 {
@@ -17,6 +18,7 @@ namespace Anamnese.Controllers
         public AnamneseModelsController(Contexto context)
         {
             _context = context;
+           
         }
 
         // GET: AnamneseModels
@@ -170,10 +172,10 @@ namespace Anamnese.Controllers
             return _context.AnamneseModel.Any(e => e.IdAnamnese == id);
         }
 
-        public async Task<IActionResult> GerarPdf(int id)
+        public async Task<IActionResult> GerarPdf(int id, int idPaciente)
         {
             // Gera o PDF
-            var pdfResult = await AnamneseCreatePdf(id);
+            var pdfResult = await AnamneseCreatePdf(id, idPaciente);
 
             if (pdfResult == null)
             {
@@ -183,7 +185,8 @@ namespace Anamnese.Controllers
             return pdfResult;
         }
 
-        private async Task<IActionResult> AnamneseCreatePdf(int id)
+        [Obsolete]
+        private async Task<IActionResult> AnamneseCreatePdf(int id, int idPaciente)
         {
             var anamnese = await _context.AnamneseModel
                 .FirstOrDefaultAsync(a => a.IdAnamnese == id);
@@ -191,6 +194,13 @@ namespace Anamnese.Controllers
             if (anamnese == null)
             {
                 return NotFound();
+            }
+
+            var paciente = await _context.PacienteModel.FirstOrDefaultAsync(p => p.IdPaciente == idPaciente);
+
+            if (paciente == null)
+            {
+                return NotFound(); // Paciente não encontrado
             }
 
             QuestPDF.Settings.License = QuestPDF.Infrastructure.LicenseType.Community;
@@ -205,8 +215,21 @@ namespace Anamnese.Controllers
                             page.Margin(50);
                             page.Content().Column(column =>
                             {
-                                column.Item().Text($"Anamnese ID: {anamnese.IdAnamnese}");
-                                column.Item().Text($"Paciente ID: {anamnese.IdPaciente}");
+                                // Cabeçalho
+                                column.Item().Text("Sistema de Gerenciamento de Anamneses", TextStyle.Default.Size(40).Bold());
+                                column.Item().Text("Relatório de Anamnese", TextStyle.Default.Size(24).Bold());
+                                column.Item().PaddingBottom(20);
+
+                                // Dados do Paciente
+                                column.Item().Text("Dados do Paciente", TextStyle.Default.Size(18).Bold());
+                                column.Item().PaddingBottom(5);
+                                column.Item().Text($"Nome do Paciente: {paciente.NomeCompletoPaciente}");
+                                column.Item().Text($"Data de Nascimento: {((DateTime)paciente.DataNascimentoPaciente).ToString("dd/MM/yyyy")}");
+                                column.Item().PaddingBottom(20);
+
+                                // Dados da Anamnese
+                                column.Item().Text("Detalhes da Anamnese:", TextStyle.Default.Size(18).Bold());
+                                column.Item().PaddingBottom(5);
                                 column.Item().Text($"Queixa Principal: {anamnese.QueixaPrincipalAnamnese}");
                                 column.Item().Text($"Histórico da Doença Atual: {anamnese.HistoricoDoencaAtualAnamnese}");
                                 column.Item().Text($"Antecedentes Pessoais: {anamnese.AntecedentesPessoaisAnamnese}");
@@ -214,7 +237,9 @@ namespace Anamnese.Controllers
                                 column.Item().Text($"Exame Físico: {anamnese.ExameFisicoAnamnese}");
                                 column.Item().Text($"Hipóteses Diagnósticas: {anamnese.HipotesesDiagnosticasAnamnese}");
                                 column.Item().Text($"Plano de Tratamento: {anamnese.PlanoTratamentoAnamnese}");
-                                column.Item().Text($"Data de Cadastro: {anamnese.DataCadastroAnamnese}");
+                                column.Item().Text($"Data de Cadastro: {anamnese.DataCadastroAnamnese.ToString("dd/MM/yyyy")}");
+                                column.Item().PaddingBottom(10);
+                                column.Item().Text("Sistema desenvolvido por Raul Souto", TextStyle.Default.Size(11).Bold());
                             });
                         });
                 });
@@ -226,10 +251,6 @@ namespace Anamnese.Controllers
                 return File(pdfBytes, "application/pdf", $"Anamnese_{id}.pdf");
             }
         }
-
-
-
-
 
     }
 }

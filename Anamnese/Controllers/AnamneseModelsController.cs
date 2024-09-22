@@ -172,6 +172,9 @@ namespace Anamnese.Controllers
             return _context.AnamneseModel.Any(e => e.IdAnamnese == id);
         }
 
+
+        #region Gerar PDF
+
         public async Task<IActionResult> GerarPdf(int id, int idPaciente)
         {
             // Gera o PDF
@@ -185,7 +188,6 @@ namespace Anamnese.Controllers
             return pdfResult;
         }
 
-        [Obsolete]
         private async Task<IActionResult> AnamneseCreatePdf(int id, int idPaciente)
         {
             var anamnese = await _context.AnamneseModel
@@ -216,8 +218,11 @@ namespace Anamnese.Controllers
                             page.Content().Column(column =>
                             {
                                 // Cabeçalho
-                                column.Item().Text("Sistema de Gerenciamento de Anamneses", TextStyle.Default.Size(40).Bold());
-                                column.Item().Text("Relatório de Anamnese", TextStyle.Default.Size(24).Bold());
+                                column.Item()
+                                .AlignCenter().
+                                Text("Sistema de Gerenciamento de Anamneses", TextStyle.Default.Size(25).Bold());
+                                column.Item().PaddingBottom(30);
+                                column.Item().Text("Relatório de Anamnese", TextStyle.Default.Size(20).Bold());
                                 column.Item().PaddingBottom(20);
 
                                 // Dados do Paciente
@@ -238,8 +243,9 @@ namespace Anamnese.Controllers
                                 column.Item().Text($"Hipóteses Diagnósticas: {anamnese.HipotesesDiagnosticasAnamnese}");
                                 column.Item().Text($"Plano de Tratamento: {anamnese.PlanoTratamentoAnamnese}");
                                 column.Item().Text($"Data de Cadastro: {anamnese.DataCadastroAnamnese.ToString("dd/MM/yyyy")}");
-                                column.Item().PaddingBottom(10);
-                                column.Item().Text("Sistema desenvolvido por Raul Souto", TextStyle.Default.Size(11).Bold());
+                                page.Footer()
+                                .AlignCenter()
+                                .Text("Sistema desenvolvido por Raul Souto", TextStyle.Default.Size(11).Bold());
                             });
                         });
                 });
@@ -251,6 +257,10 @@ namespace Anamnese.Controllers
                 return File(pdfBytes, "application/pdf", $"Anamnese_{id}.pdf");
             }
         }
+
+        #endregion
+
+
 
     }
 }

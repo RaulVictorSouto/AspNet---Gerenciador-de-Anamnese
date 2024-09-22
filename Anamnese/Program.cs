@@ -35,4 +35,5 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=PacienteModels}/{action=Index}/{id?}");
 
+
 app.Run();

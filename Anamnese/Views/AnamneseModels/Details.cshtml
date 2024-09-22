@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Details";
     var idPaciente = Context.Request.Query["IdPaciente"].ToString();
+    var idAnamnese = Context.Request.Query["IdAnamnese"].ToString();
 }
 
 <script>
@@ -73,7 +74,7 @@
         Editar
     </a>
 
-    <a class="btn btn-warning mr-2" href="javascript:openPdf('@Url.Action("GerarPdf", new { id = Model.IdAnamnese })');">
+    <a class="btn btn-warning mr-2" href="javascript:void(0);" onclick="openPdf('@Url.Action("GerarPdf", new { id = Model.IdAnamnese, idPaciente = idPaciente })');">
         <i class="bi bi-file-earmark-pdf"></i> Gerar PDF
     </a>
 

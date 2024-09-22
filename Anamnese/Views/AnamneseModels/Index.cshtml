@@ -41,10 +41,10 @@
                         <a class="btn btn-warning btn-sm" asp-action="Details" asp-route-id="@item.IdAnamnese" asp-route-idPaciente="@idPaciente">
                             <i class="bi bi-card-list"></i> Detalhes
                         </a>
-                        <a class="btn btn-info btn-sm" href="javascript:void(0);" onclick="openPdf('@Url.Action("GerarPdf", new { id = item.IdAnamnese })');">
-                            <i class="bi bi-file-earmark-pdf"></i> Gerar PDF
-                        </a>
-                        <a class="btn btn-primary btn-sm" asp-action="Edit" asp-route-id="@item.IdAnamnese" asp-route-idPaciente="@idPaciente">
+                        <a class="btn btn-info btn-sm" href="javascript:void(0);" onclick="openPdf('@Url.Action("GerarPdf", new { id = item.IdAnamnese, idPaciente = item.IdPaciente })');">
+							<i class="bi bi-file-earmark-pdf"></i> Gerar PDF
+						</a>
+						<a class="btn btn-primary btn-sm" asp-action="Edit" asp-route-id="@item.IdAnamnese" asp-route-idPaciente="@idPaciente">
                             <i class="bi bi-pencil"></i> 
                         </a>
                         <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.IdAnamnese" asp-route-idPaciente="@idPaciente">

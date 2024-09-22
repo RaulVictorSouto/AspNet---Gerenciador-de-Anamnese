@@ -4,124 +4,121 @@
     ViewData["Title"] = "Delete";
 }
 
-<h3>Tem certeza que deseja deleta este paciente?</h3>
+<h3 class="text-center">Tem certeza que deseja deleta este paciente?</h3>
 <div>
-    <h4>Paciente</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NomePaciente)
+        <dt class="col-sm-3 font-weight-bold text-primary">
+            @Html.DisplayNameFor(model => model.NomeCompletoPaciente)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NomePaciente)
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.NomeCompletoPaciente)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SobrenomePaciente)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SobrenomePaciente)
-        </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-3 font-weight-bold text-primary">
             @Html.DisplayNameFor(model => model.DataNascimentoPaciente)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-9">
             @Html.DisplayFor(model => model.DataNascimentoPaciente)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-3 font-weight-bold text-primary">
             @Html.DisplayNameFor(model => model.GeneroPaciente)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-9">
             @Html.DisplayFor(model => model.GeneroPaciente)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-3 font-weight-bold text-primary">
             @Html.DisplayNameFor(model => model.CpfPaciente)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-9">
             @Html.DisplayFor(model => model.CpfPaciente)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-3 font-weight-bold text-primary">
             @Html.DisplayNameFor(model => model.RgPaciente)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-9">
             @Html.DisplayFor(model => model.RgPaciente)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-3 font-weight-bold text-primary">
             @Html.DisplayNameFor(model => model.CertidaoPaciente)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-9">
             @Html.DisplayFor(model => model.CertidaoPaciente)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TelefonePaciente)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TelefonePaciente)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CelularPaciente)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CelularPaciente)
-        </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-3 font-weight-bold text-primary">
             @Html.DisplayNameFor(model => model.NaturalidadePaciente)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-9">
             @Html.DisplayFor(model => model.NaturalidadePaciente)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-3 font-weight-bold text-primary">
+            @Html.DisplayNameFor(model => model.TelefonePaciente)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.TelefonePaciente)
+        </dd>
+        <dt class="col-sm-3 font-weight-bold text-primary">
+            @Html.DisplayNameFor(model => model.CelularPaciente)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.CelularPaciente)
+        </dd>
+        <dt class="col-sm-3 font-weight-bold text-primary">
             @Html.DisplayNameFor(model => model.EstadoCivilPaciente)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-9">
             @Html.DisplayFor(model => model.EstadoCivilPaciente)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-3 font-weight-bold text-primary">
             @Html.DisplayNameFor(model => model.CepPaciente)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-9">
             @Html.DisplayFor(model => model.CepPaciente)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-3 font-weight-bold text-primary">
             @Html.DisplayNameFor(model => model.LogradouroPaciente)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-9">
             @Html.DisplayFor(model => model.LogradouroPaciente)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-3 font-weight-bold text-primary">
             @Html.DisplayNameFor(model => model.NumeroEnderecoPaciente)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-9">
             @Html.DisplayFor(model => model.NumeroEnderecoPaciente)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-3 font-weight-bold text-primary">
             @Html.DisplayNameFor(model => model.BairroPaciente)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-9">
             @Html.DisplayFor(model => model.BairroPaciente)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-3 font-weight-bold text-primary">
             @Html.DisplayNameFor(model => model.CidadePaciente)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-9">
             @Html.DisplayFor(model => model.CidadePaciente)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-3 font-weight-bold text-primary">
             @Html.DisplayNameFor(model => model.EstadoPaciente)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-9">
             @Html.DisplayFor(model => model.EstadoPaciente)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-3 font-weight-bold text-primary">
             @Html.DisplayNameFor(model => model.DataCadastroPaciente)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-9">
             @Html.DisplayFor(model => model.DataCadastroPaciente)
         </dd>
     </dl>
     
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="IdPaciente" />
-        <input type="submit" value="Deletar" class="btn btn-danger" /> |
-        <a asp-action="Index">Voltar</a>
-    </form>
+    <div class="text-center mt-4">
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="IdPaciente" />
+            <input type="submit" value="Deletar" class="btn btn-danger" />
+            <a class="btn btn-secondary" asp-action="Index">
+                <i class="fas fa-arrow-left"></i> Voltar
+            </a>
+        </form>
+    </div>
 </div>

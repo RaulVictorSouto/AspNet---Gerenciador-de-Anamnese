@@ -4,40 +4,51 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Lista de Pacientes</h1>
+<div class="container mt-4">
+    <h1 class="text-center text-primary">Lista de Pacientes</h1>
 
-<p>
-    <a asp-action="Create">Adicionar novo paciente</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                Nome do paciente
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataCadastroPaciente)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.NomePaciente)
-                @Html.DisplayFor(modelItem => item.SobrenomePaciente)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataCadastroPaciente)
-            </td>
-            <td>
-                <a asp-controller="AnamneseModels" asp-action="Index" asp-route-idPaciente="@item.IdPaciente">Ver anamneses</a> |
-                <a asp-action="Details" asp-route-id="@item.IdPaciente">Detalhes</a> |
-                <a asp-action="Edit" asp-route-id="@item.IdPaciente">Editar</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdPaciente">Deletar</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    <div class="text-right mb-3">
+        <a class="btn btn-success" asp-action="Create">
+            <i class="fas fa-user-plus"></i> Adicionar novo paciente
+        </a>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Nome do paciente
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DataCadastroPaciente)
+                </th>
+                <th class="text-center">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NomePaciente) @Html.DisplayFor(modelItem => item.SobrenomePaciente)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DataCadastroPaciente)
+                    </td>
+                    <td class="text-center">
+                        <a class="btn btn-info btn-sm" asp-controller="AnamneseModels" asp-action="Index" asp-route-idPaciente="@item.IdPaciente">
+                            <i class="bi bi-file-medical"></i> Ver anamneses
+                        </a>
+                        <a class="btn btn-warning btn-sm" asp-action="Details" asp-route-id="@item.IdPaciente">
+                            <i class="bi bi-card-list"></i> Detalhes
+                        </a>
+                        <a class="btn btn-primary btn-sm" asp-action="Edit" asp-route-id="@item.IdPaciente">
+                            <i class="bi bi-pencil"></i>
+                        </a>
+                        <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.IdPaciente">
+                            <i class="bi bi-trash3"></i>
+                        </a>
+                    </td>
+                </tr>
+    }
+        </tbody>
+    </table>
+</div>

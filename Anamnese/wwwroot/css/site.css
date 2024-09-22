@@ -20,3 +20,56 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+/* Título */
+h1 {
+    color: #343a40; /* Cor do título */
+    margin-bottom: 20px; /* Espaçamento inferior */
+}
+
+/* Formulário */
+.form-control {
+    border-radius: 0.5rem; /* Bordas arredondadas */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+/* Labels */
+.form-label {
+    font-weight: bold; /* Negrito para rótulos */
+    color: #495057; /* Cor dos rótulos */
+}
+
+/* Botão de Cadastro */
+.btn-primary {
+    background-color: #007bff; /* Cor de fundo do botão */
+    border-color: #007bff; /* Cor da borda do botão */
+}
+
+    .btn-primary:hover {
+        background-color: #0056b3; /* Cor do botão ao passar o mouse */
+        border-color: #004085; /* Cor da borda ao passar o mouse */
+    }
+
+/* Mensagens de validação */
+.text-danger {
+    font-size: 0.875rem; /* Tamanho de fonte para mensagens de erro */
+}
+
+/* Alinhamento e Margens */
+.row {
+    margin: 0 auto; /* Centraliza a linha */
+}
+
+.col-md-6 {
+    margin-top: 20px; /* Espaço superior para colunas */
+}
+
+/* Botão Voltar */
+.btn-secondary {
+    background-color: #6c757d; /* Cor do botão voltar */
+    border-color: #6c757d; /* Cor da borda do botão voltar */
+}
+
+    .btn-secondary:hover {
+        background-color: #5a6268; /* Cor do botão ao passar o mouse */
+    }

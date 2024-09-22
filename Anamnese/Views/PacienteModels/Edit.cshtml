@@ -4,112 +4,188 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Editar Paciente</h1>
+<h1 class="text-center">Editar Paciente</h1>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="IdPaciente" />
-            <div class="form-group">
-                <label asp-for="NomePaciente" class="control-label"></label>
-                <input asp-for="NomePaciente" class="form-control" />
-                <span asp-validation-for="NomePaciente" class="text-danger"></span>
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <!-- Nome e Sobrenome -->
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="NomePaciente" class="form-label"></label>
+                        <input asp-for="NomePaciente" class="form-control" placeholder="Digite o nome" />
+                        <span asp-validation-for="NomePaciente" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="SobrenomePaciente" class="form-label"></label>
+                        <input asp-for="SobrenomePaciente" class="form-control" placeholder="Digite o sobrenome" />
+                        <span asp-validation-for="SobrenomePaciente" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="SobrenomePaciente" class="control-label"></label>
-                <input asp-for="SobrenomePaciente" class="form-control" />
-                <span asp-validation-for="SobrenomePaciente" class="text-danger"></span>
+
+            <!-- Data de Nascimento e Gênero -->
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="DataNascimentoPaciente" class="form-label"></label>
+                        <input asp-for="DataNascimentoPaciente" class="form-control" type="date" />
+                        <span asp-validation-for="DataNascimentoPaciente" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="GeneroPaciente" class="form-label"></label>
+                        <select asp-for="GeneroPaciente" class="form-select">
+                            <option value="" disabled selected>Selecione...</option>
+                            <option value="Masculino">Masculino</option>
+                            <option value="Feminino">Feminino</option>
+                            <option value="Divorciado(a)">Divorciado(a)</option>
+                            <option value="Outro">Outro</option>
+                            <option value="Prefiro não informar">Prefiro não informar</option>
+                        </select>
+                        <span asp-validation-for="GeneroPaciente" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="DataNascimentoPaciente" class="control-label"></label>
-                <input asp-for="DataNascimentoPaciente" class="form-control" />
-                <span asp-validation-for="DataNascimentoPaciente" class="text-danger"></span>
+
+            <!-- Documentos -->
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group mb-3">
+                        <label asp-for="CpfPaciente" class="form-label"></label>
+                        <input asp-for="CpfPaciente" class="form-control" placeholder="XXX.XXX.XXX-XX" />
+                        <span asp-validation-for="CpfPaciente" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group mb-3">
+                        <label asp-for="RgPaciente" class="form-label"></label>
+                        <input asp-for="RgPaciente" class="form-control" placeholder="XX.XXX.XXX-XX" />
+                        <span asp-validation-for="RgPaciente" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group mb-3">
+                        <label asp-for="CertidaoPaciente" class="form-label"></label>
+                        <input asp-for="CertidaoPaciente" class="form-control" placeholder="XXXXXX, XX XX XXXX, XX:XX" />
+                        <span asp-validation-for="CertidaoPaciente" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="GeneroPaciente" class="control-label"></label>
-                <input asp-for="GeneroPaciente" class="form-control" />
-                <span asp-validation-for="GeneroPaciente" class="text-danger"></span>
+
+            <!-- Contato -->
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="TelefonePaciente" class="form-label"></label>
+                        <input asp-for="TelefonePaciente" class="form-control" placeholder="(XX) XXXX-XXXX" />
+                        <span asp-validation-for="TelefonePaciente" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="CelularPaciente" class="form-label"></label>
+                        <input asp-for="CelularPaciente" class="form-control" placeholder="(XX) XXXXX-XXXX" />
+                        <span asp-validation-for="CelularPaciente" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="CpfPaciente" class="control-label"></label>
-                <input asp-for="CpfPaciente" class="form-control" />
-                <span asp-validation-for="CpfPaciente" class="text-danger"></span>
+
+            <!-- Endereço -->
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group mb-3">
+                        <label asp-for="CepPaciente" class="form-label"></label>
+                        <input asp-for="CepPaciente" class="form-control" placeholder="XXXXX-XXX" />
+                        <span asp-validation-for="CepPaciente" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group mb-3">
+                        <label asp-for="LogradouroPaciente" class="form-label"></label>
+                        <input asp-for="LogradouroPaciente" class="form-control" placeholder="Rua, Avenida..." />
+                        <span asp-validation-for="LogradouroPaciente" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group mb-3">
+                        <label asp-for="NumeroEnderecoPaciente" class="form-label"></label>
+                        <input asp-for="NumeroEnderecoPaciente" class="form-control" placeholder="Número" />
+                        <span asp-validation-for="NumeroEnderecoPaciente" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="RgPaciente" class="control-label"></label>
-                <input asp-for="RgPaciente" class="form-control" />
-                <span asp-validation-for="RgPaciente" class="text-danger"></span>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group mb-3">
+                        <label asp-for="BairroPaciente" class="form-label"></label>
+                        <input asp-for="BairroPaciente" class="form-control" placeholder="Bairro" />
+                        <span asp-validation-for="BairroPaciente" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group mb-3">
+                        <label asp-for="CidadePaciente" class="form-label"></label>
+                        <input asp-for="CidadePaciente" class="form-control" placeholder="Cidade" />
+                        <span asp-validation-for="CidadePaciente" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group mb-3">
+                        <label asp-for="EstadoPaciente" class="form-label"></label>
+                        <select asp-for="EstadoPaciente" class="form-select">
+                            <option value="" disabled selected>Selecione...</option>
+                            @* Opções do estado *@
+                            <option value="AC">AC - Acre</option>
+                            <option value="AL">AL - Alagoas</option>
+                            <option value="AP">AP - Amapá</option>
+                            <option value="AM">AM - Amazonas</option>
+                            <option value="BA">BA - Bahia</option>
+                            <option value="CE">CE - Ceará</option>
+                            <option value="DF">DF - Distrito Federal</option>
+                            <option value="ES">ES - Espírito Santo</option>
+                            <option value="GO">GO - Goiás</option>
+                            <option value="MA">MA - Maranhão</option>
+                            <option value="MT">MT - Mato Grosso</option>
+                            <option value="MS">MS - Mato Grosso do Sul</option>
+                            <option value="MG">MG - Minas Gerais</option>
+                            <option value="PA">PA - Pará</option>
+                            <option value="PB">PB - Paraíba</option>
+                            <option value="PR">PR - Paraná</option>
+                            <option value="PE">PE - Pernambuco</option>
+                            <option value="PI">PI - Piauí</option>
+                            <option value="RJ">RJ - Rio de Janeiro</option>
+                            <option value="RN">RN - Rio Grande do Norte</option>
+                            <option value="RS">RS - Rio Grande do Sul</option>
+                            <option value="RO">RO - Rondônia</option>
+                            <option value="RR">RR - Roraima</option>
+                            <option value="SC">SC - Santa Catarina</option>
+                            <option value="SP">SP - São Paulo</option>
+                            <option value="SE">SE - Sergipe</option>
+                            <option value="TO">TO - Tocantins</option>
+                        </select>
+                        <span asp-validation-for="EstadoPaciente" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
+
+            <!-- Botão Cadastrar -->
             <div class="form-group">
-                <label asp-for="CertidaoPaciente" class="control-label"></label>
-                <input asp-for="CertidaoPaciente" class="form-control" />
-                <span asp-validation-for="CertidaoPaciente" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NaturalidadePaciente" class="control-label"></label>
-                <input asp-for="NaturalidadePaciente" class="form-control" />
-                <span asp-validation-for="NaturalidadePaciente" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TelefonePaciente" class="control-label"></label>
-                <input asp-for="TelefonePaciente" class="form-control" />
-                <span asp-validation-for="TelefonePaciente" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CelularPaciente" class="control-label"></label>
-                <input asp-for="CelularPaciente" class="form-control" />
-                <span asp-validation-for="CelularPaciente" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="EstadoCivilPaciente" class="control-label"></label>
-                <input asp-for="EstadoCivilPaciente" class="form-control" />
-                <span asp-validation-for="EstadoCivilPaciente" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CepPaciente" class="control-label"></label>
-                <input asp-for="CepPaciente" class="form-control" />
-                <span asp-validation-for="CepPaciente" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="LogradouroPaciente" class="control-label"></label>
-                <input asp-for="LogradouroPaciente" class="form-control" />
-                <span asp-validation-for="LogradouroPaciente" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NumeroEnderecoPaciente" class="control-label"></label>
-                <input asp-for="NumeroEnderecoPaciente" class="form-control" />
-                <span asp-validation-for="NumeroEnderecoPaciente" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="BairroPaciente" class="control-label"></label>
-                <input asp-for="BairroPaciente" class="form-control" />
-                <span asp-validation-for="BairroPaciente" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CidadePaciente" class="control-label"></label>
-                <input asp-for="CidadePaciente" class="form-control" />
-                <span asp-validation-for="CidadePaciente" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="EstadoPaciente" class="control-label"></label>
-                <input asp-for="EstadoPaciente" class="form-control" />
-                <span asp-validation-for="EstadoPaciente" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DataCadastroPaciente" class="control-label"></label>
-                <input asp-for="DataCadastroPaciente" class="form-control" />
-                <span asp-validation-for="DataCadastroPaciente" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Salvar" class="btn btn-primary" />
+                <input type="submit" value="Cadastrar" class="btn btn-primary btn-lg w-100" />
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Voltar</a>
+<div class="text-center mt-3">
+    <a asp-action="Index" class="btn btn-secondary">Voltar</a>
 </div>
 
 @section Scripts {

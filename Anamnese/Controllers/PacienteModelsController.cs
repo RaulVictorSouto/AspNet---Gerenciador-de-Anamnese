@@ -33,8 +33,8 @@ namespace Anamnese.Controllers
                 return NotFound();
             }
 
-            var pacienteModel = await _context.PacienteModel
-                .FirstOrDefaultAsync(m => m.IdPaciente == id);
+            var pacienteModel = await _context.PacienteModel.FirstOrDefaultAsync(m => m.IdPaciente == id);
+
             if (pacienteModel == null)
             {
                 return NotFound();

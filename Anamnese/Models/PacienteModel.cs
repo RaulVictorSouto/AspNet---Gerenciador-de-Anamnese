@@ -89,5 +89,14 @@ namespace Anamnese.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? DataCadastroPaciente { get; set; }
+
+        [Display(Name = "Nome Completo")]
+        public string NomeCompletoPaciente
+        {
+            get
+            {
+                return $"{NomePaciente} {SobrenomePaciente}";
+            }
+        }
     }
 }

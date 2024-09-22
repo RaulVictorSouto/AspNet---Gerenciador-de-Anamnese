@@ -25,7 +25,7 @@ namespace Anamnese.Controllers
             ViewBag.IdPaciente = idPaciente;
 
             var paciente = await _context.PacienteModel.Where(p => p.IdPaciente == idPaciente).FirstOrDefaultAsync();
-            ViewBag.Nome = paciente.NomePaciente + " " + paciente.SobrenomePaciente;
+            ViewBag.Nome = paciente.NomeCompletoPaciente;
 
             var anamneses = await _context.AnamneseModel.Where(a => a.IdPaciente == idPaciente).ToListAsync();
             return View(anamneses);

@@ -6,44 +6,59 @@
     var nome = ViewBag.Nome;
 }
 
-<h1>Lista de Anamneses</h1>
-<h3>Paciente: @nome</h3>
+<div class="container mt-4">
+    <h1 class="text-center text-primary">Lista de Anamneses</h1>
+    <h3 class="text-secondary">Paciente: <span class="text-secondary">@nome</span></h3>
+    <hr />
 
-<p>
-    <a asp-action="Create" asp-route-idPaciente="@ViewBag.IdPaciente">Adicionar nova anamnese</a>
-</p>
+    <div class="text-right mb-3">
+        <a class="btn btn-success" asp-action="Create" asp-route-idPaciente="@idPaciente">
+            <i class="fas fa-plus"></i> Adicionar nova anamnese
+        </a>
+    </div>
 
-<script>
-    function openPdf(url) {
-        window.open(url, '_blank');
-    }
-</script>
+    <script>
+        function openPdf(url) {
+            window.open(url, '_blank');
+        }
+    </script>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.DataCadastroAnamnese)
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataCadastroAnamnese)
-            </td>
-            <td>
-                <a asp-action="Details" asp-route-id="@item.IdAnamnese" asp-route-IdPaciente="@ViewBag.IdPaciente">Detalhes</a> |
-                <a href="javascript:openPdf('@Url.Action("GerarPdf", new { id = item.IdAnamnese })');">Gerar PDF</a> |
-                <a asp-action="Edit" asp-route-id="@item.IdAnamnese" asp-route-IdPaciente="@ViewBag.IdPaciente">Editar</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdAnamnese" asp-route-IdPaciente="@ViewBag.IdPaciente">Deletar</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>Data de Cadastro</th>
+                <th class="text-center">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DataCadastroAnamnese)
+                    </td>
+                    <td class="text-center">
+                        <a class="btn btn-warning btn-sm" asp-action="Details" asp-route-id="@item.IdAnamnese" asp-route-idPaciente="@idPaciente">
+                            <i class="bi bi-card-list"></i> Detalhes
+                        </a>
+                        <a class="btn btn-info btn-sm" href="javascript:openPdf('@Url.Action("GerarPdf", new { id = item.IdAnamnese })');">
+                            <i class="bi bi-file-earmark-pdf"></i> Gerar PDF
+                        </a>
+                        <a class="btn btn-primary btn-sm" asp-action="Edit" asp-route-id="@item.IdAnamnese" asp-route-idPaciente="@idPaciente">
+                            <i class="bi bi-pencil"></i> 
+                        </a>
+                        <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.IdAnamnese" asp-route-idPaciente="@idPaciente">
+                            <i class="bi bi-trash3"></i> 
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 
-<p>
-    <a asp-action="Index" asp-controller="PacienteModels" class="btn btn-primary sticky-top">Voltar</a>
-</p>
+    <div class="mt-4">
+        <a asp-action="Index" asp-controller="PacienteModels" class="btn btn-secondary">
+            Voltar
+        </a>
+    </div>
+</div>

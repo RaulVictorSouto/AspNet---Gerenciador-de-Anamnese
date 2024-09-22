@@ -5,61 +5,101 @@
     var idPaciente = Context.Request.Query["IdPaciente"].ToString();
 }
 
-<h1>Editar Anamnese</h1>
+<h1 class="text-center">Editar Anamnese</h1>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="IdAnamnese" readonly />
-            <input type="hidden" asp-for="IdPaciente" value="@idPaciente" readonly />
-            <input asp-for="DataCadastroAnamnese" class="form-control" type="hidden" readonly />
-            <div class="form-group">
-                <label asp-for="QueixaPrincipalAnamnese" class="control-label"></label>
-                <input asp-for="QueixaPrincipalAnamnese" class="form-control" />
-                <span asp-validation-for="QueixaPrincipalAnamnese" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="HistoricoDoencaAtualAnamnese" class="control-label"></label>
-                <input asp-for="HistoricoDoencaAtualAnamnese" class="form-control" />
-                <span asp-validation-for="HistoricoDoencaAtualAnamnese" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AntecedentesPessoaisAnamnese" class="control-label"></label>
-                <input asp-for="AntecedentesPessoaisAnamnese" class="form-control" />
-                <span asp-validation-for="AntecedentesPessoaisAnamnese" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AntecedentesFamiliaresAnamnese" class="control-label"></label>
-                <input asp-for="AntecedentesFamiliaresAnamnese" class="form-control" />
-                <span asp-validation-for="AntecedentesFamiliaresAnamnese" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ExameFisicoAnamnese" class="control-label"></label>
-                <input asp-for="ExameFisicoAnamnese" class="form-control" />
-                <span asp-validation-for="ExameFisicoAnamnese" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="HipotesesDiagnosticasAnamnese" class="control-label"></label>
-                <input asp-for="HipotesesDiagnosticasAnamnese" class="form-control" />
-                <span asp-validation-for="HipotesesDiagnosticasAnamnese" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PlanoTratamentoAnamnese" class="control-label"></label>
-                <input asp-for="PlanoTratamentoAnamnese" class="form-control" />
-                <span asp-validation-for="PlanoTratamentoAnamnese" class="text-danger"></span>
-            </div>
-            
-            <div class="form-group">
-                <input type="submit" value="Salvar" class="btn btn-primary" />
-            </div>
-        </form>
+<div class="container mt-4">
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+                <input asp-for="IdPaciente" value="@idPaciente" type="hidden" />
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="QueixaPrincipalAnamnese" class="control-label font-weight-bold"></label>
+                            <textarea asp-for="QueixaPrincipalAnamnese" class="form-control" rows="3" placeholder="Digite a queixa principal"></textarea>
+                            <span asp-validation-for="QueixaPrincipalAnamnese" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="HistoricoDoencaAtualAnamnese" class="control-label font-weight-bold"></label>
+                            <textarea asp-for="HistoricoDoencaAtualAnamnese" class="form-control" rows="3" placeholder="Descreva o histórico da doença atual"></textarea>
+                            <span asp-validation-for="HistoricoDoencaAtualAnamnese" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <br />
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="AntecedentesPessoaisAnamnese" class="control-label font-weight-bold"></label>
+                            <textarea asp-for="AntecedentesPessoaisAnamnese" class="form-control" rows="2" placeholder="Informe os antecedentes pessoais"></textarea>
+                            <span asp-validation-for="AntecedentesPessoaisAnamnese" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="AntecedentesFamiliaresAnamnese" class="control-label font-weight-bold"></label>
+                            <textarea asp-for="AntecedentesFamiliaresAnamnese" class="form-control" rows="2" placeholder="Informe os antecedentes familiares"></textarea>
+                            <span asp-validation-for="AntecedentesFamiliaresAnamnese" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <br />
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="ExameFisicoAnamnese" class="control-label font-weight-bold"></label>
+                            <textarea asp-for="ExameFisicoAnamnese" class="form-control" rows="3" placeholder="Detalhe o exame físico"></textarea>
+                            <span asp-validation-for="ExameFisicoAnamnese" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="HipotesesDiagnosticasAnamnese" class="control-label font-weight-bold"></label>
+                            <textarea asp-for="HipotesesDiagnosticasAnamnese" class="form-control" rows="3" placeholder="Descreva as hipóteses diagnósticas"></textarea>
+                            <span asp-validation-for="HipotesesDiagnosticasAnamnese" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <br />
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label asp-for="PlanoTratamentoAnamnese" class="control-label font-weight-bold"></label>
+                            <textarea asp-for="PlanoTratamentoAnamnese" class="form-control" rows="3" placeholder="Informe o plano de tratamento"></textarea>
+                            <span asp-validation-for="PlanoTratamentoAnamnese" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group text-center">
+                            <input type="submit" value="Cadastrar" class="btn btn-primary btn-lg w-100" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="text-center mt-3">
+        <a asp-action="Index" asp-controller="AnamneseModels" asp-route-idPaciente="@idPaciente" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i> Voltar
+        </a>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index" asp-controller="AnamneseModels" asp-route-idPaciente="@idPaciente">Voltar</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

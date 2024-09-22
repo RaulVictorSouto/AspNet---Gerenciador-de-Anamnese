@@ -5,70 +5,65 @@
     var idPaciente = Context.Request.Query["IdPaciente"].ToString();
 }
 
-<h3>Você está certo de que deseja deletar esta Anamnese?</h3>
+<h3 class="text-center">Você está certo de que deseja deletar esta Anamnese?</h3>
 <div>
-    <h4>AnamneseModel</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdPaciente)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdPaciente)
-        </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-3 font-weight-bold text-primary">
             @Html.DisplayNameFor(model => model.QueixaPrincipalAnamnese)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-9">
             @Html.DisplayFor(model => model.QueixaPrincipalAnamnese)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-3 font-weight-bold text-primary">
             @Html.DisplayNameFor(model => model.HistoricoDoencaAtualAnamnese)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-9">
             @Html.DisplayFor(model => model.HistoricoDoencaAtualAnamnese)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-3 font-weight-bold text-primary">
             @Html.DisplayNameFor(model => model.AntecedentesPessoaisAnamnese)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-9">
             @Html.DisplayFor(model => model.AntecedentesPessoaisAnamnese)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-3 font-weight-bold text-primary">
             @Html.DisplayNameFor(model => model.AntecedentesFamiliaresAnamnese)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-9">
             @Html.DisplayFor(model => model.AntecedentesFamiliaresAnamnese)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-3 font-weight-bold text-primary">
             @Html.DisplayNameFor(model => model.ExameFisicoAnamnese)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-9">
             @Html.DisplayFor(model => model.ExameFisicoAnamnese)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-3 font-weight-bold text-primary">
             @Html.DisplayNameFor(model => model.HipotesesDiagnosticasAnamnese)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-9">
             @Html.DisplayFor(model => model.HipotesesDiagnosticasAnamnese)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-3 font-weight-bold text-primary">
             @Html.DisplayNameFor(model => model.PlanoTratamentoAnamnese)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-9">
             @Html.DisplayFor(model => model.PlanoTratamentoAnamnese)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-3 font-weight-bold text-primary">
             @Html.DisplayNameFor(model => model.DataCadastroAnamnese)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-9">
             @Html.DisplayFor(model => model.DataCadastroAnamnese)
         </dd>
     </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="IdAnamnese" />
-        <input type="submit" value="Deletar" class="btn btn-danger" /> |
-        <a asp-action="Index" asp-controller="AnamneseModels" asp-route-idPaciente="@idPaciente">Voltar</a>
-    </form>
+
+    <div class="text-center mt-4">
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="IdAnamnese" />
+            <button type="submit" class="btn btn-danger mr-2">Deletar</button>
+            <a class="btn btn-secondary mr-2" asp-action="Index" asp-controller="AnamneseModels" asp-route-idPaciente="@idPaciente">Voltar</a>
+        </form>
+    </div>
 </div>

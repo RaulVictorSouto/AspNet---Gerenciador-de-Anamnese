@@ -1,7 +1,4 @@
 using Anamnese.Data;
-using Anamnese.Integracao;
-using Anamnese.Integracao.Intefaces;
-using Anamnese.Integracao.Refit;
 using Microsoft.EntityFrameworkCore;
 using Refit;
 
@@ -17,13 +14,6 @@ builder.Services.AddDbContext<Contexto>(options =>
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
-builder.Services.AddRefitClient<IViaCepIntegracaoRefit>().ConfigureHttpClient(c =>
-{
-    c.BaseAddress = new Uri("https://viacep.com.br");
-});
-
-builder.Services.AddScoped<IViaCepIntegracao, ViaCepIntegracao>();
 
 var app = builder.Build();
 

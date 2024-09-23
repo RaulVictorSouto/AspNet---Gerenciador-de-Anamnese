@@ -8,16 +8,21 @@ using Microsoft.EntityFrameworkCore;
 using Anamnese.Data;
 using Anamnese.Models;
 using System.Globalization;
+using static Anamnese.Models.PacienteModel;
+using Anamnese.Integracao.Response;
+using Anamnese.Integracao.Intefaces;
 
 namespace Anamnese.Controllers
 {
     public class PacienteModelsController : Controller
     {
         private readonly Contexto _context;
+        private readonly IViaCepIntegracao _viaCepIntegracao;
 
-        public PacienteModelsController(Contexto context)
+        public PacienteModelsController(Contexto context, IViaCepIntegracao viaCepIntegracao)
         {
             _context = context;
+            _viaCepIntegracao = viaCepIntegracao;
             
         }
 
@@ -60,11 +65,18 @@ namespace Anamnese.Controllers
         {
             if (ModelState.IsValid)
             {
-                pacienteModel.DataCadastroPaciente = DateTime.Now;
+                try
+                {
+                    pacienteModel.DataCadastroPaciente = DateTime.Now;
 
-                _context.Add(pacienteModel);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                    _context.Add(pacienteModel);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", "Ocorreu um erro ao salvar os dados: " + ex.Message);
+                }
             }
             return View(pacienteModel);
         }
@@ -157,5 +169,41 @@ namespace Anamnese.Controllers
         {
             return _context.PacienteModel.Any(e => e.IdPaciente == id);
         }
+
+
+        [HttpGet("{cep}")]
+        public async Task<ActionResult<ViaCepResponse>> ListarDadosEndereco(string cep)
+        {
+            var responseData = await _viaCepIntegracao.ObterDadosViaCep(cep);
+
+            if(responseData == null)
+            {
+                return BadRequest("CEP não encontrado");
+            }
+
+            var pacienteModel = new PacienteModel
+            {
+                LogradouroPaciente = responseData.Logradouro,
+                BairroPaciente = responseData.Bairro,
+                CidadePaciente = responseData.Localidade,
+                EstadoPaciente = responseData.Uf
+            };
+
+            return Ok(responseData);
+
+        }
+
+        private async Task<ViaCepResponse> BuscarEnderecoPorCep(string cep)
+        {
+            var response = await ListarDadosEndereco(cep);
+
+            if (response.Result is OkObjectResult okResult)
+            {
+                return okResult.Value as ViaCepResponse;
+            }
+
+            return null; // ou lidar com o erro conforme necessário
+        }
+
     }
 }

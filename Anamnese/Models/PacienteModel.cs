@@ -38,7 +38,7 @@ namespace Anamnese.Models
         [StringLength(20, ErrorMessage = "O RG deve ter no máximo 20 caracteres.")]
         public string? RgPaciente { get; set; }
 
-        [Display(Name = "Certidão de Nascimento")]
+        [Display(Name = "Certidão")]
         [StringLength(50, ErrorMessage = "A certidão deve ter no máximo 50 caracteres.")]
         public string? CertidaoPaciente { get; set; } 
 
@@ -98,5 +98,7 @@ namespace Anamnese.Models
                 return $"{NomePaciente} {SobrenomePaciente}";
             }
         }
+
     }
+
 }

@@ -9,6 +9,7 @@ using Anamnese.Data;
 using Anamnese.Models;
 using System.Globalization;
 using static Anamnese.Models.PacienteModel;
+using Newtonsoft.Json;
 
 namespace Anamnese.Controllers
 {
@@ -166,5 +167,36 @@ namespace Anamnese.Controllers
             return _context.PacienteModel.Any(e => e.IdPaciente == id);
         }
 
+
+        public async Task<JsonResult> BuscarEnderecoPorCep(string cep)
+        {
+            if (string.IsNullOrEmpty(cep)) return Json(null);
+
+            // Remove caracteres não numéricos do CEP
+            cep = cep.Replace("-", "").Replace(".", "").Replace(" ", "");
+
+            using (var client = new HttpClient())
+            {
+                var url = $"https://viacep.com.br/ws/{cep}/json/";
+                var response = await client.GetStringAsync(url);
+                var endereco = JsonConvert.DeserializeObject<Endereco>(response);
+
+                if (endereco == null || endereco.Cep == null)
+                {
+                    return Json(new { error = "CEP não encontrado" });
+                }
+
+                return Json(endereco);
+            }
+        }
+
+        public class Endereco
+        {
+            public string Cep { get; set; }
+            public string Logradouro { get; set; }
+            public string Bairro { get; set; }
+            public string Localidade { get; set; }
+            public string Uf { get; set; }
+        }
     }
 }

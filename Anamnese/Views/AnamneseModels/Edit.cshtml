@@ -7,8 +7,8 @@
 
 <h1>Editar Anamnese</h1>
 <hr />
-<div class="row">
-    <div class="col-md-4">
+<div class="containaer">
+    <div class="row">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="IdAnamnese" readonly />
@@ -16,50 +16,59 @@
             <input asp-for="DataCadastroAnamnese" class="form-control" type="hidden" readonly />
             <div class="form-group">
                 <label asp-for="QueixaPrincipalAnamnese" class="control-label"></label>
-                <input asp-for="QueixaPrincipalAnamnese" class="form-control" />
+                <textarea asp-for="QueixaPrincipalAnamnese" class="form-control" rows="5"></textarea>
                 <span asp-validation-for="QueixaPrincipalAnamnese" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
                 <label asp-for="HistoricoDoencaAtualAnamnese" class="control-label"></label>
-                <input asp-for="HistoricoDoencaAtualAnamnese" class="form-control" />
+                <textarea asp-for="HistoricoDoencaAtualAnamnese" class="form-control" rows="5"></textarea>
                 <span asp-validation-for="HistoricoDoencaAtualAnamnese" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
                 <label asp-for="AntecedentesPessoaisAnamnese" class="control-label"></label>
-                <input asp-for="AntecedentesPessoaisAnamnese" class="form-control" />
+                <textarea asp-for="AntecedentesPessoaisAnamnese" class="form-control" rows="5"></textarea>
                 <span asp-validation-for="AntecedentesPessoaisAnamnese" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
                 <label asp-for="AntecedentesFamiliaresAnamnese" class="control-label"></label>
-                <input asp-for="AntecedentesFamiliaresAnamnese" class="form-control" />
+                <textarea asp-for="AntecedentesFamiliaresAnamnese" class="form-control" rows="5"></textarea>
                 <span asp-validation-for="AntecedentesFamiliaresAnamnese" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
                 <label asp-for="ExameFisicoAnamnese" class="control-label"></label>
-                <input asp-for="ExameFisicoAnamnese" class="form-control" />
+                <textarea asp-for="ExameFisicoAnamnese" class="form-control" rows="5"></textarea>
                 <span asp-validation-for="ExameFisicoAnamnese" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
                 <label asp-for="HipotesesDiagnosticasAnamnese" class="control-label"></label>
-                <input asp-for="HipotesesDiagnosticasAnamnese" class="form-control" />
+                <textarea asp-for="HipotesesDiagnosticasAnamnese" class="form-control" rows="5"></textarea>
                 <span asp-validation-for="HipotesesDiagnosticasAnamnese" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
                 <label asp-for="PlanoTratamentoAnamnese" class="control-label"></label>
-                <input asp-for="PlanoTratamentoAnamnese" class="form-control" />
+                <textarea asp-for="PlanoTratamentoAnamnese" class="form-control" rows="5"></textarea>
                 <span asp-validation-for="PlanoTratamentoAnamnese" class="text-danger"></span>
             </div>
-
-            <div class="form-group">
-                <input type="submit" value="Salvar" class="btn btn-primary" />
+            <hr />
+            <br />
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="form-group">
+                        <input type="submit" value="Editar" class="btn btn-primary btn-lg me-2" />
+                        <a asp-action="Index" class="btn btn-secondary btn-lg" asp-controller="AnamneseModels" asp-route-idPaciente="@idPaciente">Voltar</a>
+                    </div>
+                </div>
             </div>
+            <br />
+            <br />
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index" asp-controller="AnamneseModels" asp-route-idPaciente="@idPaciente">Voltar para a lista de Anamneses</a>
-    <a asp-action="Index" asp-controller="AnamneseModels" asp-route-idPaciente="@idPaciente">Voltar</a>
 </div>
 
 @section Scripts {

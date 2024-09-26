@@ -177,57 +177,41 @@ namespace Anamnese.Controllers
 
         public async Task<IActionResult> GerarPdf(int id, int idPaciente)
         {
-            // Gera o PDF
             var pdfResult = await AnamneseCreatePdf(id, idPaciente);
-
-            if (pdfResult == null)
-            {
-                return NotFound();
-            }
-
-            return pdfResult;
+            return pdfResult ?? NotFound();
         }
 
         private async Task<IActionResult> AnamneseCreatePdf(int id, int idPaciente)
         {
-            var anamnese = await _context.AnamneseModel
-                .FirstOrDefaultAsync(a => a.IdAnamnese == id);
+            var anamnese = await _context.AnamneseModel.FindAsync(id);
+            var paciente = await _context.PacienteModel.FindAsync(idPaciente);
 
-            if (anamnese == null)
+            if (anamnese == null || paciente == null)
             {
-                return NotFound();
-            }
-
-            var paciente = await _context.PacienteModel.FirstOrDefaultAsync(p => p.IdPaciente == idPaciente);
-
-            if (paciente == null)
-            {
-                return NotFound(); // Paciente não encontrado
+                return NotFound(); // Se qualquer um dos dados estiver ausente, retorna 404
             }
 
             QuestPDF.Settings.License = QuestPDF.Infrastructure.LicenseType.Community;
 
-            using (var stream = new MemoryStream())
+            try
             {
-                var document = Document.Create(container =>
+                using (var stream = new MemoryStream())
                 {
-                    container
-                        .Page(page =>
+                    // Criar o PDF
+                    Document.Create(container =>
+                    {
+                        container.Page(page =>
                         {
                             page.Margin(50);
                             page.Content().Column(column =>
                             {
                                 // Cabeçalho
-                                column.Item()
-                                .AlignCenter().
-                                Text("Sistema de Gerenciamento de Anamneses", TextStyle.Default.Size(25).Bold());
+                                column.Item().AlignCenter().Text("Sistema de Gerenciamento de Anamneses", TextStyle.Default.Size(25).Bold());
                                 column.Item().PaddingBottom(30);
                                 column.Item().Text("Relatório de Anamnese", TextStyle.Default.Size(20).Bold());
                                 column.Item().PaddingBottom(20);
 
                                 // Dados do Paciente
-                                column.Item().Text("Dados do Paciente", TextStyle.Default.Size(18).Bold());
-                                column.Item().PaddingBottom(5);
                                 column.Item().Text($"Nome do Paciente: {paciente.NomeCompletoPaciente}");
                                 column.Item().Text($"Data de Nascimento: {((DateTime)paciente.DataNascimentoPaciente).ToString("dd/MM/yyyy")}");
                                 column.Item().PaddingBottom(20);
@@ -243,18 +227,19 @@ namespace Anamnese.Controllers
                                 column.Item().Text($"Hipóteses Diagnósticas: {anamnese.HipotesesDiagnosticasAnamnese}");
                                 column.Item().Text($"Plano de Tratamento: {anamnese.PlanoTratamentoAnamnese}");
                                 column.Item().Text($"Data de Cadastro: {anamnese.DataCadastroAnamnese.ToString("dd/MM/yyyy")}");
-                                page.Footer()
-                                .AlignCenter()
-                                .Text("Sistema desenvolvido por Raul Souto", TextStyle.Default.Size(11).Bold());
                             });
+                            page.Footer().AlignCenter().Text("Sistema desenvolvido por Raul Souto", TextStyle.Default.Size(11).Bold());
                         });
-                });
+                    }).GeneratePdf(stream);
 
-                // Gere o PDF para um stream em memória
-                document.GeneratePdf(stream);
-                var pdfBytes = stream.ToArray();
-
-                return File(pdfBytes, "application/pdf", $"Anamnese_{id}.pdf");
+                    return File(stream.ToArray(), "application/pdf", $"Anamnese_{id}.pdf");
+                }
+            }
+            catch (Exception ex)
+            {
+                // Logar o erro (se necessário)
+                Console.WriteLine($"Erro ao gerar PDF: {ex.Message}");
+                return StatusCode(500, "Erro interno ao gerar o PDF");
             }
         }
 
